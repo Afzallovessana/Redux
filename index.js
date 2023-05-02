@@ -1,6 +1,10 @@
 const redux = require ('redux');
+const reduxLogger = require('redux-logger');
 const createStore = redux.createStore;
 const combineReducers = redux.combineReducers;
+const applyMiddleware = redux.applyMiddleware;
+
+const logger = reduxLogger.createLogger();
  
 // Action
 const BUY_CAKE = "BUY_CAKE";
@@ -97,7 +101,7 @@ const IceCreamReducer = ( state = iceCreamState , action) => {
 
 // Shop store
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,applyMiddleware(logger));
 
   
 store.dispatch(buyPastry());
